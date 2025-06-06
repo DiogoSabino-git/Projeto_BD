@@ -1,8 +1,10 @@
--- CREATE DATABASE Projeto;
+CREATE DATABASE Projeto;
+USE Projeto;
 
 CREATE TABLE leiloes(
-		id_leilao INT NOT NULL,
-        data DATE,
+		id_leilao INT AUTO_INCREMENT,
+        data_inicio DATE NOT NULL ,
+        data_fim DATE DEFAULT NULL,
         local VARCHAR(50),
         PRIMARY KEY(id_leilao));
 
