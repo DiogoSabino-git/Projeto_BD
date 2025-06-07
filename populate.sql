@@ -20,3 +20,28 @@ CALL criar_leilao('2025-06-17', 'Almada');
 CALL criar_leilao('2025-06-18', 'Barreiro');
 CALL criar_leilao('2025-06-19', 'Tomar');
 CALL criar_leilao('2025-06-20', 'Beja');
+
+
+-- TABELA CATEGORIAS
+
+INSERT INTO categorias (nome_c) VALUES 
+('Smartphones'),
+('Portáteis / Laptops'),
+('Tablets'),
+('Televisões'),
+('Consolas de Jogos'),
+('Componentes de PC'),
+('Acessórios de Computador'),
+('Smartwatches / Wearables'),
+('Câmaras Digitais'),
+('Drones'),
+('Sistemas de Som / Colunas'),
+('Auscultadores / Headphones'),
+('Electrodomésticos Pequenos'),
+('Equipamentos de Rede'),
+('Armazenamento Externo'),
+('Dispositivos de Streaming'),
+('Projetores'),
+('Equipamento de Impressão'),
+('Acessórios para Telemóvel'),
+('Dispositivos Usados');

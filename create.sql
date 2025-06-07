@@ -9,7 +9,7 @@ CREATE TABLE leiloes(
         PRIMARY KEY(id_leilao));
 
 CREATE TABLE categorias(
-		nome_c VARCHAR(20) NOT NULL PRIMARY KEY);
+		nome_c VARCHAR(100) PRIMARY KEY);
         
 CREATE TABLE sessoes(
 		id_sessao int NOT NULL,
