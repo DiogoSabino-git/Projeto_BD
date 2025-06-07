@@ -31,15 +31,15 @@ CREATE TABLE sessao_categoria(
 CREATE TABLE pessoas(
 		cc VARCHAR(12) NOT NULL PRIMARY KEY,
         nome VARCHAR(60) NOT NULL,
-        email VARCHAR(30),
+        email VARCHAR(50),
         telefone CHAR(9));
         
 CREATE TABLE vendedores(
-		cc VARCHAR(12) PRIMARY KEY,
+		cc VARCHAR(12) NOT NULL PRIMARY KEY,
         FOREIGN KEY(cc) REFERENCES pessoas(cc));
         
 CREATE TABLE compradores(
-		cc VARCHAR(12) PRIMARY KEY,
+		cc VARCHAR(12) NOT NULL PRIMARY KEY,
         FOREIGN KEY(cc) REFERENCES pessoas(cc));
         
 CREATE TABLE lotes(
@@ -51,7 +51,7 @@ CREATE TABLE lotes(
         FOREIGN KEY(cc) REFERENCES vendedores(cc));
         
 CREATE TABLE artigos(
-		id_artigo INT NOT NULL,
+		id_artigo INT NOT NULL AUTO_INCREMENT,
         preco_inicial NUMERIC(10,2) NOT NULL,
         descricao VARCHAR(250),
         id_lote int,

@@ -225,3 +225,33 @@ INSERT INTO lotes (id_lote, id_sessao, cc) VALUES
 (18, 13, '123456789049'),
 (19, 14, '123456789050'),
 (20, 15, '123456789051');
+
+
+-- TABELA ARTIGOS 
+
+CALL adicionar_artigo(1, 150.00, 'Smartphone Samsung Galaxy S21, novo');
+CALL adicionar_artigo(1, 140.00, 'Smartphone Samsung Galaxy S20, usado');
+CALL adicionar_artigo(2, 1200.50, 'Portátil Dell Inspiron 15, 16GB RAM');
+CALL adicionar_artigo(2, 1100.00, 'Portátil HP Pavilion, 8GB RAM');
+CALL adicionar_artigo(3, 300.00, 'Tablet Apple iPad Air, 64GB');
+CALL adicionar_artigo(4, 450.00, 'Televisor LG 43 polegadas 4K');
+CALL adicionar_artigo(4, 430.00, 'Televisor Samsung 40 polegadas Full HD');
+CALL adicionar_artigo(5, 350.00, 'Consola Sony PlayStation 5, usada');
+CALL adicionar_artigo(6, 250.00, 'Placa gráfica NVIDIA GTX 1660');
+CALL adicionar_artigo(6, 230.00, 'Placa gráfica AMD Radeon RX 580');
+CALL adicionar_artigo(7, 45.00, 'Teclado mecânico RGB, usado');
+CALL adicionar_artigo(8, 180.00, 'Smartwatch Fitbit Versa 3');
+CALL adicionar_artigo(9, 400.00, 'Câmara digital Canon EOS 2000D');
+CALL adicionar_artigo(10, 600.00, 'Drone DJI Mini 2');
+CALL adicionar_artigo(10, 580.00, 'Drone DJI Spark');
+CALL adicionar_artigo(11, 100.00, 'Colunas Bluetooth JBL Charge 4');
+CALL adicionar_artigo(12, 85.00, 'Auscultadores Sony WH-CH510');
+CALL adicionar_artigo(13, 90.00, 'Máquina de café portátil');
+CALL adicionar_artigo(14, 75.00, 'Router WiFi TP-Link AC1200');
+CALL adicionar_artigo(15, 60.00, 'Disco externo SSD 500GB');
+CALL adicionar_artigo(15, 55.00, 'Disco externo HDD 1TB');
+CALL adicionar_artigo(16, 50.00, 'Dispositivo de streaming Amazon Fire TV');
+CALL adicionar_artigo(17, 350.00, 'Projetor portátil Epson');
+CALL adicionar_artigo(18, 120.00, 'Impressora HP DeskJet');
+CALL adicionar_artigo(19, 20.00, 'Capa protetora para telemóvel');
+CALL adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
