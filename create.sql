@@ -71,7 +71,7 @@ CREATE TABLE licitacoes(
 CREATE TABLE metodosPagamento(
 		n_cartao CHAR(16) NOT NULL PRIMARY KEY,
         data_val DATE NOT NULL,
-        cc VARCHAR(12),
+        cc VARCHAR(12) NOT NULL,
         FOREIGN KEY(cc) REFERENCES compradores(cc));
         
 CREATE TABLE compra(
