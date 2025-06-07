@@ -108,4 +108,120 @@ INSERT INTO sessao_categoria (id_sessao, nome_c) VALUES
 (20, 'Dispositivos Usados'),
 (20, 'Smartphones');
 
+-- TABELA PESSOAS
+INSERT INTO pessoas (cc, nome, email, telefone) VALUES
+-- compradores
+('123456789012', 'Ana Silva', 'ana.silva@example.com', '912345678'),
+('123456789013', 'Bruno Costa', 'bruno.costa@example.com', '913456789'),
+('123456789014', 'Carla Pereira', 'carla.pereira@example.com', '914567890'),
+('123456789015', 'Daniel Sousa', 'daniel.sousa@example.com', '915678901'),
+('123456789016', 'Elisa Martins', 'elisa.martins@example.com', '916789012'),
+('123456789017', 'Fábio Lopes', 'fabio.lopes@example.com', '917890123'),
+('123456789018', 'Gabriela Fernandes', 'gabriela.fernandes@example.com', '918901234'),
+('123456789019', 'Hugo Almeida', 'hugo.almeida@example.com', '919012345'),
+('123456789020', 'Inês Ribeiro', 'ines.ribeiro@example.com', '920123456'),
+('123456789021', 'João Gomes', 'joao.gomes@example.com', '921234567'),
+('123456789022', 'Karina Duarte', 'karina.duarte@example.com', '922345678'),
+('123456789023', 'Luís Moreira', 'luis.moreira@example.com', '923456789'),
+('123456789024', 'Marta Carvalho', 'marta.carvalho@example.com', '924567890'),
+('123456789025', 'Nuno Teixeira', 'nuno.teixeira@example.com', '925678901'),
+('123456789026', 'Olga Freitas', 'olga.freitas@example.com', '926789012'),
+('123456789027', 'Pedro Machado', 'pedro.machado@example.com', '927890123'),
+('123456789028', 'Quim Monteiro', 'quim.monteiro@example.com', '928901234'),
+('123456789029', 'Rita Lopes', 'rita.lopes@example.com', '929012345'),
+('123456789030', 'Sofia Nunes', 'sofia.nunes@example.com', '930123456'),
+('123456789031', 'Tiago Fernandes', 'tiago.fernandes@example.com', '931234567'),
+-- vendedores
+('123456789032', 'Miguel Silva', 'miguel.silva@example.com', '932345678'),
+('123456789033', 'Carolina Sousa', 'carolina.sousa@example.com', '933456789'),
+('123456789034', 'Rafael Costa', 'rafael.costa@example.com', '934567890'),
+('123456789035', 'Patrícia Fernandes', 'patricia.fernandes@example.com', '935678901'),
+('123456789036', 'João Rodrigues', 'joao.rodrigues@example.com', '936789012'),
+('123456789037', 'Sandra Marques', 'sandra.marques@example.com', '937890123'),
+('123456789038', 'Diogo Pereira', 'diogo.pereira@example.com', '938901234'),
+('123456789039', 'Mariana Lopes', 'mariana.lopes@example.com', '939012345'),
+('123456789040', 'André Almeida', 'andre.almeida@example.com', '940123456'),
+('123456789041', 'Mónica Teixeira', 'monica.teixeira@example.com', '941234567'),
+('123456789042', 'Pedro Machado', 'pedro.machado@example.com', '942345678'),
+('123456789043', 'Raquel Nunes', 'raquel.nunes@example.com', '943456789'),
+('123456789044', 'Filipe Monteiro', 'filipe.monteiro@example.com', '944567890'),
+('123456789045', 'Sílvia Carvalho', 'silvia.carvalho@example.com', '945678901'),
+('123456789046', 'Rui Fernandes', 'rui.fernandes@example.com', '946789012'),
+('123456789047', 'Isabel Santos', 'isabel.santos@example.com', '947890123'),
+('123456789048', 'Carlos Pinto', 'carlos.pinto@example.com', '948901234'),
+('123456789049', 'Teresa Lopes', 'teresa.lopes@example.com', '949012345'),
+('123456789050', 'Vítor Gomes', 'vitor.gomes@example.com', '950123456'),
+('123456789051', 'Helena Dias', 'helena.dias@example.com', '951234567');
 
+-- TABELA PARA OS COMPRADORES
+
+INSERT INTO compradores (cc) VALUES
+('123456789012'),
+('123456789013'),
+('123456789014'),
+('123456789015'),
+('123456789016'),
+('123456789017'),
+('123456789018'),
+('123456789019'),
+('123456789020'),
+('123456789021'),
+('123456789022'),
+('123456789023'),
+('123456789024'),
+('123456789025'),
+('123456789026'),
+('123456789027'),
+('123456789028'),
+('123456789029'),
+('123456789030'),
+('123456789031');
+
+-- TABELA PARA OS VENDEDORES
+
+INSERT INTO vendedores (cc) VALUES
+('123456789032'),
+('123456789033'),
+('123456789034'),
+('123456789035'),
+('123456789036'),
+('123456789037'),
+('123456789038'),
+('123456789039'),
+('123456789040'),
+('123456789041'),
+('123456789042'),
+('123456789043'),
+('123456789044'),
+('123456789045'),
+('123456789046'),
+('123456789047'),
+('123456789048'),
+('123456789049'),
+('123456789050'),
+('123456789051');
+
+
+-- TABELA LOTES
+
+INSERT INTO lotes (id_lote, id_sessao, cc) VALUES
+(1, 1, '123456789032'),
+(2, 1, '123456789033'),
+(3, 2, '123456789034'),
+(4, 2, '123456789035'),
+(5, 3, '123456789036'),
+(6, 3, '123456789037'),
+(7, 4, '123456789038'),
+(8, 4, '123456789039'),
+(9, 5, '123456789040'),
+(10, 5, '123456789041'),
+(11, 6, '123456789042'),
+(12, 7, '123456789043'),
+(13, 8, '123456789044'),
+(14, 9, '123456789045'),
+(15, 10, '123456789046'),
+(16, 11, '123456789047'),
+(17, 12, '123456789048'),
+(18, 13, '123456789049'),
+(19, 14, '123456789050'),
+(20, 15, '123456789051');
