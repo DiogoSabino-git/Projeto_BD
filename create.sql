@@ -59,9 +59,14 @@ CREATE TABLE artigos(
         FOREIGN KEY(id_lote) REFERENCES lotes(id_lote));
 
 CREATE TABLE licitacoes(
-		valor_l NUMERIC(10,2) NOT NULL PRIMARY KEY,
+		valor_l NUMERIC(10,2) NOT NULL,
         cc VARCHAR(12),
-        FOREIGN KEY(cc) REFERENCES compradores(cc));
+        id_artigo INT NOT NULL,
+        data_lance TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (valor_l, cc, id_artigo),
+        UNIQUE (valor_l, id_artigo),
+        FOREIGN KEY (cc) REFERENCES compradores(cc),
+        FOREIGN KEY (id_artigo) REFERENCES artigos(id_artigo));
 
 CREATE TABLE metodosPagamento(
 		n_cartao CHAR(16) NOT NULL PRIMARY KEY,
