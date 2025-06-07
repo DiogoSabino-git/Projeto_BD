@@ -55,5 +55,29 @@ BEGIN
     VALUES (p_valor, p_cc, p_id_artigo);
 END $$
 
-
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE PROCEDURE fechar_compra(
+	IN p_id_artigo INT
+    )
+BEGIN
+	DECLARE v_cc VARCHAR(12);
+    DECLARE v_valor NUMERIC(10,2);
+    
+    SELECT cc, valor_l
+    INTO v_cc, v_valor
+    FROM licitacoes
+    WHERE id_artigo = p_id_Artigo
+    ORDER BY valor_l DESC
+    LIMIT 1;
+    
+	INSERT INTO compra (id_artigo, cc, preco_final)
+    VALUES (p_id_artigo, v_cc, v_valor);
+END $$
+
+DELIMITER $$
+
+		

@@ -309,3 +309,28 @@ INSERT INTO metodosPagamento (n_cartao, data_val, cc) VALUES
 ('1111222233334458', '2027-07-13', '123456789029'),
 ('1111222233334459', '2026-03-03', '123456789030'),
 ('1111222233334460', '2028-12-25', '123456789031');
+
+
+-- TABELA COMPRA
+
+CALL fechar_compra(1);
+CALL fechar_compra(2);
+CALL fechar_compra(3);
+CALL fechar_compra(4);
+CALL fechar_compra(5);
+CALL fechar_compra(6);
+CALL fechar_compra(7);
+CALL fechar_compra(8);
+CALL fechar_compra(9);
+CALL fechar_compra(10);
+CALL fechar_compra(11);
+CALL fechar_compra(12);
+CALL fechar_compra(13);
+CALL fechar_compra(14);
+CALL fechar_compra(15);
+CALL fechar_compra(16);
+CALL fechar_compra(17);
+CALL fechar_compra(18);
+CALL fechar_compra(19);
+CALL fechar_compra(20);
+
