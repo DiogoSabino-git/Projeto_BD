@@ -1,3 +1,5 @@
+-- DROP SCHEMA projeto;
+
 CREATE DATABASE Projeto;
 USE Projeto;
 
@@ -12,15 +14,20 @@ CREATE TABLE categorias(
 		nome_c VARCHAR(100) PRIMARY KEY);
         
 CREATE TABLE sessoes(
-		id_sessao int NOT NULL,
+		id_sessao int NOT NULL AUTO_INCREMENT,
         hora_inicio TIME NOT NULL,
         hora_fim TIME NOT NULL,
         id_leilao INT,
-        nome_c VARCHAR(20),
         PRIMARY KEY(id_sessao),
-        FOREIGN KEY(id_leilao) REFERENCES leiloes(id_leilao),
-        FOREIGN KEY(nome_c) REFERENCES categorias(nome_c));
+        FOREIGN KEY(id_leilao) REFERENCES leiloes(id_leilao));
 
+CREATE TABLE sessao_categoria(
+		id_sessao INT,
+        nome_c VARCHAR(100),
+        PRIMARY KEY(id_sessao, nome_c),
+        FOREIGN KEY(id_sessao) REFERENCES sessoes(id_sessao),
+        FOREIGN KEY(nome_c) REFERENCES categorias(nome_c));
+        
 CREATE TABLE pessoas(
 		cc VARCHAR(12) NOT NULL PRIMARY KEY,
         nome VARCHAR(60) NOT NULL,
