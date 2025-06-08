@@ -1,3 +1,5 @@
+-- STORED PROCEDURES
+
 DELIMITER $$
 
 CREATE PROCEDURE criar_leilao(
@@ -80,4 +82,93 @@ END $$
 
 DELIMITER $$
 
-		
+DELIMITER $$
+
+CREATE PROCEDURE listar_lances_artigos(
+	IN p_id_artigo INT
+)
+BEGIN
+	SELECT
+		l.valor_l,
+        l.cc,
+        p.nome,
+        l.data_lance
+	FROM licitacoes l
+    JOIN pessoas p ON l.cc = p.cc
+    WHERE l.id_artigo = p_id_artigo
+    ORDER BY l.valor_l ASC;
+END $$
+
+DELIMITER ;
+
+-- VIEWS
+
+CREATE VIEW artigos_disponiveis AS
+SELECT
+	a.id_artigo,
+    a.descricao,
+    a.preco_inicial,
+    COALESCE(MAX(l.valor_l), a.preco_inicial) AS preco_atual,
+    lot.id_lote,
+    s.id_sessao
+FROM artigos a
+JOIN lotes lot ON a.id_lote = lot.id_lote
+JOIN sessoes s ON lot.id_sessao = s.id_sessao
+LEFT JOIN licitacoes l ON a.id_artigo = l.id_artigo
+WHERE a.id_artigo NOT IN (
+	SELECT id_artigo FROM compra
+)
+GROUP BY a.id_artigo, a.descricao, a.preco_inicial, lot.id_lote, s.id_sessao;
+
+
+CREATE VIEW leiloes_finalizados_vencedores AS
+SELECT 
+    c.id_artigo,
+    a.descricao,
+    c.cc AS comprador,
+    p.nome,
+    c.preco_final
+FROM compra c
+JOIN artigos a ON c.id_artigo = a.id_artigo
+JOIN pessoas p ON c.cc = p.cc;
+
+
+CREATE VIEW historico_lances_utilizadores AS
+SELECT 
+    l.cc,
+    p.nome,
+    l.id_artigo,
+    a.descricao,
+    l.valor_l,
+    l.data_lance
+FROM licitacoes l
+JOIN pessoas p ON l.cc = p.cc
+JOIN artigos a ON l.id_artigo = a.id_artigo
+ORDER BY l.cc, l.data_lance DESC;
+
+
+
+CREATE VIEW produtos_sem_lance AS
+SELECT 
+    a.id_artigo,
+    a.descricao,
+    a.preco_inicial
+FROM artigos a
+WHERE a.id_artigo NOT IN (
+    SELECT DISTINCT id_artigo FROM licitacoes
+);
+
+
+DROP VIEW sessoes_com_categorias;
+CREATE OR REPLACE VIEW sessoes_com_categorias AS
+SELECT 
+    s.id_sessao,
+    l.data_inicio,
+    s.hora_inicio,
+    s.hora_fim,
+    c.nome_c AS categoria
+FROM sessao_categoria sc
+JOIN sessoes s ON sc.id_sessao = s.id_sessao
+JOIN categorias c ON sc.nome_c = c.nome_c
+JOIN leiloes l ON s.id_leilao = l.id_leilao
+ORDER BY l.data_inicio, s.hora_inicio;
