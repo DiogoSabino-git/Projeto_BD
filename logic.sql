@@ -72,7 +72,7 @@ BEGIN
     SELECT cc, valor_l
     INTO v_cc, v_valor
     FROM licitacoes
-    WHERE id_artigo = p_id_Artigo
+    WHERE id_artigo = p_id_artigo
     ORDER BY valor_l DESC
     LIMIT 1;
     
@@ -100,6 +100,7 @@ BEGIN
 END $$
 
 DELIMITER ;
+
 
 -- VIEWS
 
@@ -172,3 +173,78 @@ JOIN sessoes s ON sc.id_sessao = s.id_sessao
 JOIN categorias c ON sc.nome_c = c.nome_c
 JOIN leiloes l ON s.id_leilao = l.id_leilao
 ORDER BY l.data_inicio, s.hora_inicio;
+
+
+
+-- STORED FUNCTOINS
+
+DELIMITER $$
+
+CREATE FUNCTION maior_lance_artigo(p_id_artigo INT)
+RETURNS NUMERIC(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE max_lance NUMERIC(10,2);
+    
+    SELECT MAX(valor_l) INTO max_lance
+    FROM licitacoes
+    WHERE id_artigo = p_id_artigo;
+
+    RETURN IFNULL(max_lance, 0);
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE FUNCTION artigo_mais_lances()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE artigo_id INT;
+    
+    SELECT id_artigo
+    FROM licitacoes
+    GROUP BY id_artigo
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+    INTO artigo_id;
+    
+    RETURN artigo_id;
+END $$
+
+DELIMITER ;
+
+
+-- TRIGGERS
+
+DELIMITER $$
+
+CREATE TRIGGER valida_datas_leilao BEFORE INSERT ON leiloes
+FOR EACH ROW
+BEGIN
+    IF NEW.data_fim IS NOT NULL AND NEW.data_inicio >= NEW.data_fim THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Erro: data_inicio deve ser antes da data_fim.';
+    END IF;
+END $$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER valida_valor_lance BEFORE INSERT ON licitacoes
+FOR EACH ROW
+BEGIN
+    DECLARE maior_valor DECIMAL(10,2);
+
+    SELECT MAX(valor_l) INTO maior_valor
+    FROM licitacoes
+    WHERE id_artigo = NEW.id_artigo;
+
+    IF maior_valor IS NOT NULL AND NEW.valor_l <= maior_valor THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Erro: O novo lance deve ser maior que o maior lance anterior.';
+    END IF;
+END $$
+
+DELIMITER ;
