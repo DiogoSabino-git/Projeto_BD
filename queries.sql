@@ -70,7 +70,7 @@ where lotes.id_sessao = (select id_sessao
 							from sessoes
                             where id_leilao = 2);
 
-
+select * from licitacoes;
 
 
 

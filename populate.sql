@@ -259,7 +259,6 @@ CALL adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
 
 -- TABELA LICITACOES
 
-CALL novo_lance(160.00, '123456789012', 1);   
 CALL novo_lance(170.00, '123456789013', 1);  
 CALL novo_lance(145.00, '123456789014', 2);  
 CALL novo_lance(1250.00, '123456789015', 3);  

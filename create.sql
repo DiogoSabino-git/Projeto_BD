@@ -1,4 +1,4 @@
--- DROP SCHEMA projeto;
+--   DROP SCHEMA projeto;
 
 CREATE DATABASE Projeto;
 USE Projeto;
@@ -62,6 +62,7 @@ CREATE TABLE licitacoes(
 		valor_l NUMERIC(10,2) NOT NULL,
         cc VARCHAR(12),
         id_artigo INT NOT NULL,
+        id_sessao INT NOT NULL,
         data_lance TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (valor_l, cc, id_artigo),
         UNIQUE (valor_l, id_artigo),

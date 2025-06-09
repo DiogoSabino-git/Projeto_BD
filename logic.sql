@@ -21,14 +21,15 @@ DELIMITER ;
 DELIMITER $$
 
 CREATE PROCEDURE novo_lance(
-	IN p_valor NUMERIC(10,2),
+    IN p_valor NUMERIC(10,2),
     IN p_cc VARCHAR(12),
-    IN p_id_artigo INT 
+    IN p_id_artigo INT
 )
 BEGIN
-	DECLARE preco_inicial_artigo NUMERIC(10,2);
+    DECLARE preco_inicial_artigo NUMERIC(10,2);
     DECLARE maior_lance_atual NUMERIC(10,2);
     DECLARE v_id_leilao INT;
+    DECLARE v_id_sessao INT;  -- Add this variable
     
     SELECT preco_inicial INTO preco_inicial_artigo
     FROM artigos
@@ -39,15 +40,23 @@ BEGIN
     WHERE id_artigo = p_id_artigo;
     
     IF p_valor <= preco_inicial_artigo THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lance deve ser maior que o preço inicial do artigo';
-	END IF;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lance deve ser maior que o preço inicial do artigo';
+    END IF;
     
     IF maior_lance_atual IS NOT NULL AND p_valor <= maior_lance_atual THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Lance deve ser maior que a maior licitação atual";
-	END IF;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Lance deve ser maior que a maior licitação atual";
+    END IF;
 
-	INSERT INTO licitacoes (valor_l, cc, id_artigo)
-    VALUES (p_valor, p_cc, p_id_artigo);
+    -- Get id_sessao
+    SELECT s.id_sessao INTO v_id_sessao
+    FROM artigos a
+    JOIN lotes l ON a.id_lote = l.id_lote
+    JOIN sessoes s ON l.id_sessao = s.id_sessao
+    WHERE a.id_artigo = p_id_artigo;
+    
+    -- Insert including id_sessao now
+    INSERT INTO licitacoes (valor_l, cc, id_artigo, id_sessao)
+    VALUES (p_valor, p_cc, p_id_artigo, v_id_sessao);
     
     SELECT le.id_leilao INTO v_id_leilao
     FROM artigos a
@@ -58,8 +67,8 @@ BEGIN
 
     INSERT IGNORE INTO participantes_leilao (id_leilao, cc)
     VALUES (v_id_leilao, p_cc);
-    
 END $$
+
 
 DELIMITER ;
 
