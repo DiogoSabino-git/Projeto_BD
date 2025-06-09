@@ -1,4 +1,4 @@
---   DROP SCHEMA projeto;
+--  DROP SCHEMA projeto;
 
 CREATE DATABASE Projeto;
 USE Projeto;
@@ -42,6 +42,13 @@ CREATE TABLE compradores(
 		cc VARCHAR(12) NOT NULL PRIMARY KEY,
         FOREIGN KEY(cc) REFERENCES pessoas(cc));
         
+CREATE TABLE participantes_leilao(
+    id_leilao INT,
+    cc VARCHAR(12),
+    PRIMARY KEY (id_leilao, cc),
+    FOREIGN KEY (id_leilao) REFERENCES leiloes(id_leilao),
+    FOREIGN KEY (cc) REFERENCES pessoas(cc));
+        
 CREATE TABLE lotes(
 		id_lote INT NOT NULL,
         id_sessao int,
@@ -81,3 +88,14 @@ CREATE TABLE compra(
         preco_final NUMERIC(10,2),
         FOREIGN KEY(id_artigo) REFERENCES artigos(id_artigo),
         FOREIGN KEY(cc) REFERENCES compradores(cc));
+
+CREATE TABLE resultados(
+    id_leilao INT NOT NULL,
+    id_participante INT NOT NULL,
+    artigo_vencido INT,
+    valor_final DECIMAL(10,2),
+    resultado ENUM('VENCEDOR', 'NÃO_VENCEDOR') NOT NULL,
+    PRIMARY KEY (id_leilao, id_participante),
+    FOREIGN KEY(id_leilao) REFERENCES leiloes(id_leilao),
+    FOREIGN KEY(id_participante) REFERENCES participantes_leilao(id_participante),
+    FOREIGN KEY (artigo_vencido) REFERENCES artigos(id_artigo));
