@@ -1,25 +1,25 @@
 -- TABELA LEILÕES
 
-CALL criar_leilao('2025-06-01', 'Lisboa');
-CALL criar_leilao('2025-06-02', 'Porto');
-CALL criar_leilao('2025-06-03', 'Coimbra');
-CALL criar_leilao('2025-06-04', 'Braga');
-CALL criar_leilao('2025-06-05', 'Aveiro');
-CALL criar_leilao('2025-06-06', 'Faro');
-CALL criar_leilao('2025-06-07', 'Leiria');
-CALL criar_leilao('2025-06-08', 'Évora');
-CALL criar_leilao('2025-06-09', 'Setúbal');
-CALL criar_leilao('2025-06-10', 'Viseu');
-CALL criar_leilao('2025-06-11', 'Guimarães');
-CALL criar_leilao('2025-06-12', 'Viana do Castelo');
-CALL criar_leilao('2025-06-13', 'Funchal');
-CALL criar_leilao('2025-06-14', 'Ponta Delgada');
-CALL criar_leilao('2025-06-15', 'Cascais');
-CALL criar_leilao('2025-06-16', 'Sintra');
-CALL criar_leilao('2025-06-17', 'Almada');
-CALL criar_leilao('2025-06-18', 'Barreiro');
-CALL criar_leilao('2025-06-19', 'Tomar');
-CALL criar_leilao('2025-06-20', 'Beja');
+CALL sp_criar_leilao('2025-06-01', 'Lisboa');
+CALL sp_criar_leilao('2025-06-02', 'Porto');
+CALL sp_criar_leilao('2025-06-03', 'Coimbra');
+CALL sp_criar_leilao('2025-06-04', 'Braga');
+CALL sp_criar_leilao('2025-06-05', 'Aveiro');
+CALL sp_criar_leilao('2025-06-06', 'Faro');
+CALL sp_criar_leilao('2025-06-07', 'Leiria');
+CALL sp_criar_leilao('2025-06-08', 'Évora');
+CALL sp_criar_leilao('2025-06-09', 'Setúbal');
+CALL sp_criar_leilao('2025-06-10', 'Viseu');
+CALL sp_criar_leilao('2025-06-11', 'Guimarães');
+CALL sp_criar_leilao('2025-06-12', 'Viana do Castelo');
+CALL sp_criar_leilao('2025-06-13', 'Funchal');
+CALL sp_criar_leilao('2025-06-14', 'Ponta Delgada');
+CALL sp_criar_leilao('2025-06-15', 'Cascais');
+CALL sp_criar_leilao('2025-06-16', 'Sintra');
+CALL sp_criar_leilao('2025-06-17', 'Almada');
+CALL sp_criar_leilao('2025-06-18', 'Barreiro');
+CALL sp_criar_leilao('2025-06-19', 'Tomar');
+CALL sp_criar_leilao('2025-06-20', 'Beja');
 
 
 -- TABELA CATEGORIAS
@@ -259,32 +259,30 @@ CALL adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
 
 -- TABELA LICITACOES
 
-INSERT INTO licitacoes (valor_l, cc, id_artigo) VALUES
-(120.00, '123456789012', 1),
-(130.00, '123456789013', 1),
-(150.00, '123456789014', 2),
-(170.00, '123456789015', 2),
-(200.00, '123456789016', 3),
-(210.00, '123456789017', 4),
-(220.00, '123456789018', 5),
-(250.00, '123456789019', 5),
-(270.00, '123456789020', 6),
-(300.00, '123456789021', 7),
-(320.00, '123456789022', 8),
-(350.00, '123456789023', 8),
-(370.00, '123456789024', 9),
-(400.00, '123456789025', 10),
-(420.00, '123456789026', 11),
-(450.00, '123456789027', 12),
-(470.00, '123456789028', 13),
-(500.00, '123456789029', 14),
-(530.00, '123456789030', 14),
-(550.00, '123456789031', 15),
-(600.00, '123456789012', 16),
-(620.00, '123456789013', 17),
-(650.00, '123456789014', 18),
-(670.00, '123456789015', 19),
-(700.00, '123456789016', 20);
+CALL novo_lance(160.00, '123456789012', 1);   
+CALL novo_lance(170.00, '123456789013', 1);  
+CALL novo_lance(145.00, '123456789014', 2);  
+CALL novo_lance(1250.00, '123456789015', 3);  
+CALL novo_lance(1150.00, '123456789016', 4);  
+CALL novo_lance(310.00, '123456789017', 5);   
+CALL novo_lance(460.00, '123456789018', 6);   
+CALL novo_lance(440.00, '123456789019', 7);   
+CALL novo_lance(360.00, '123456789020', 8);  
+CALL novo_lance(260.00, '123456789021', 9);   
+CALL novo_lance(240.00, '123456789022', 10);  
+CALL novo_lance(50.00, '123456789023', 11);   
+CALL novo_lance(200.00, '123456789024', 12);  
+CALL novo_lance(420.00, '123456789025', 13);  
+CALL novo_lance(650.00, '123456789026', 14);  
+CALL novo_lance(590.00, '123456789027', 15);  
+CALL novo_lance(110.00, '123456789028', 16);  
+CALL novo_lance(90.00, '123456789029', 17);   
+CALL novo_lance(100.00, '123456789030', 18);  
+CALL novo_lance(80.00, '123456789031', 19);   
+CALL novo_lance(70.00, '123456789012', 20);   
+CALL novo_lance(105.00, '123456789013', 21); 
+CALL novo_lance(95.00, '123456789014', 22);      
+CALL novo_lance(110.00, '123456789017', 25);  
 
 -- TABELA METODOSPAGAMENTO
 
@@ -333,4 +331,3 @@ CALL fechar_compra(17);
 CALL fechar_compra(18);
 CALL fechar_compra(19);
 CALL fechar_compra(20);
-

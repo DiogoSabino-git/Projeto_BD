@@ -1,16 +1,8 @@
 -- STORED PROCEDURES
 
-DELIMITER $$
 
-CREATE PROCEDURE criar_leilao(
-    IN p_data_inicio DATE,
-    IN p_local VARCHAR(50)
-)
-BEGIN
-    INSERT INTO leiloes (data_inicio, local)
-    VALUES (p_data_inicio, p_local);
-END $$
-DELIMITER ;
+-- METE OUTRA
+
 
 DELIMITER $$
 
@@ -36,6 +28,7 @@ CREATE PROCEDURE novo_lance(
 BEGIN
 	DECLARE preco_inicial_artigo NUMERIC(10,2);
     DECLARE maior_lance_atual NUMERIC(10,2);
+    DECLARE v_id_leilao INT;
     
     SELECT preco_inicial INTO preco_inicial_artigo
     FROM artigos
@@ -55,6 +48,17 @@ BEGIN
 
 	INSERT INTO licitacoes (valor_l, cc, id_artigo)
     VALUES (p_valor, p_cc, p_id_artigo);
+    
+    SELECT le.id_leilao INTO v_id_leilao
+    FROM artigos a
+    JOIN lotes l ON a.id_lote = l.id_lote
+    JOIN sessoes s ON l.id_sessao = s.id_sessao
+    JOIN leiloes le ON s.id_leilao = le.id_leilao
+    WHERE a.id_artigo = p_id_artigo;
+
+    INSERT IGNORE INTO participantes_leilao (id_leilao, cc)
+    VALUES (v_id_leilao, p_cc);
+    
 END $$
 
 DELIMITER ;
@@ -159,8 +163,6 @@ WHERE a.id_artigo NOT IN (
     SELECT DISTINCT id_artigo FROM licitacoes
 );
 
-
-DROP VIEW sessoes_com_categorias;
 CREATE OR REPLACE VIEW sessoes_com_categorias AS
 SELECT 
     s.id_sessao,
