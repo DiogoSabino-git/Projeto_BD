@@ -1,4 +1,4 @@
---  DROP SCHEMA projeto;
+-- DROP SCHEMA projeto;
 
 CREATE DATABASE Projeto;
 USE Projeto;
@@ -43,9 +43,10 @@ CREATE TABLE compradores(
         FOREIGN KEY(cc) REFERENCES pessoas(cc));
         
 CREATE TABLE participantes_leilao(
+    id_participante INT AUTO_INCREMENT,
     id_leilao INT,
     cc VARCHAR(12),
-    PRIMARY KEY (id_leilao, cc),
+    PRIMARY KEY (id_participante),
     FOREIGN KEY (id_leilao) REFERENCES leiloes(id_leilao),
     FOREIGN KEY (cc) REFERENCES pessoas(cc));
         

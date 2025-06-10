@@ -260,6 +260,7 @@ CALL adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
 -- TABELA LICITACOES
 
 CALL novo_lance(170.00, '123456789013', 1);  
+CALL novo_lance(180.00, '123456789012', 1);
 CALL novo_lance(145.00, '123456789014', 2);  
 CALL novo_lance(1250.00, '123456789015', 3);  
 CALL novo_lance(1150.00, '123456789016', 4);  
@@ -330,3 +331,34 @@ CALL fechar_compra(17);
 CALL fechar_compra(18);
 CALL fechar_compra(19);
 CALL fechar_compra(20);
+
+
+-- TABELA RESULTADOS
+
+CALL sp_adicionar_participante(1,123456789023);
+CALL sp_registar_resultado(1,25);
+
+CALL sp_registar_resultado(1,1);
+CALL sp_registar_resultado(1,2);
+CALL sp_registar_resultado(1,3);
+CALL sp_registar_resultado(1,4);
+CALL sp_registar_resultado(1,5);
+CALL sp_registar_resultado(2,6);
+CALL sp_registar_resultado(2,7);
+CALL sp_registar_resultado(2,8);
+CALL sp_registar_resultado(3,9);
+CALL sp_registar_resultado(3,10);
+CALL sp_registar_resultado(3,11); 
+CALL sp_registar_resultado(4,12); 
+CALL sp_registar_resultado(4,13);
+CALL sp_registar_resultado(5,14); 
+CALL sp_registar_resultado(5,15); 
+CALL sp_registar_resultado(5,16);
+CALL sp_registar_resultado(6,17); 
+CALL sp_registar_resultado(7,18);
+CALL sp_registar_resultado(8,19); 
+CALL sp_registar_resultado(9,20); 
+CALL sp_registar_resultado(10,21); 
+CALL sp_registar_resultado(10,22); 
+CALL sp_registar_resultado(11,23); 
+CALL sp_registar_resultado(14,24); 
