@@ -7,6 +7,7 @@ CREATE TABLE leiloes(
 		id_leilao INT AUTO_INCREMENT,
         data_inicio DATE NOT NULL ,
         data_fim DATE DEFAULT NULL,
+        descricao VARCHAR(200) NOT NULL,
         local VARCHAR(50),
         PRIMARY KEY(id_leilao));
 

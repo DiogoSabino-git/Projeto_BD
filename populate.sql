@@ -1,26 +1,27 @@
 -- TABELA LEILÕES
 
-CALL sp_criar_leilao('2025-06-01', 'Lisboa');
-CALL sp_criar_leilao('2025-06-02', 'Porto');
-CALL sp_criar_leilao('2025-06-03', 'Coimbra');
-CALL sp_criar_leilao('2025-06-04', 'Braga');
-CALL sp_criar_leilao('2025-06-05', 'Aveiro');
-CALL sp_criar_leilao('2025-06-06', 'Faro');
-CALL sp_criar_leilao('2025-06-07', 'Leiria');
-CALL sp_criar_leilao('2025-06-08', 'Évora');
-CALL sp_criar_leilao('2025-06-09', 'Setúbal');
-CALL sp_criar_leilao('2025-06-10', 'Viseu');
-CALL sp_criar_leilao('2025-06-11', 'Guimarães');
-CALL sp_criar_leilao('2025-06-12', 'Viana do Castelo');
-CALL sp_criar_leilao('2025-06-13', 'Funchal');
-CALL sp_criar_leilao('2025-06-14', 'Ponta Delgada');
-CALL sp_criar_leilao('2025-06-15', 'Cascais');
-CALL sp_criar_leilao('2025-06-16', 'Sintra');
-CALL sp_criar_leilao('2025-06-17', 'Almada');
-CALL sp_criar_leilao('2025-06-18', 'Barreiro');
-CALL sp_criar_leilao('2025-06-19', 'Tomar');
-CALL sp_criar_leilao('2025-06-20', 'Beja');
+CALL sp_criar_leilao('2025-06-01', 'Lisboa','Leilão de Eletrónicos - Smartphones');
+CALL sp_criar_leilao('2025-06-02', 'Porto','Leilão de Eletrónicos - Portáteis e Acessórios');
+CALL sp_criar_leilao('2025-06-03', 'Coimbra','Leilão de Eletrónicos - Tablets');
+CALL sp_criar_leilao('2025-06-04', 'Braga','Leilão de Eletrónicos - Televisões, Colunas e Projetores');
+CALL sp_criar_leilao('2025-06-05', 'Aveiro','Leilão de Eletrónicos - Consolas de Jogos');
+CALL sp_criar_leilao('2025-06-06', 'Faro','Leilão de Eletrónicos - Componentes de PC e Armazenamento Externo');
+CALL sp_criar_leilao('2025-06-07', 'Leiria','Leilão de Eletrónicos - Auscultadores');
+CALL sp_criar_leilao('2025-06-08', 'Évora','Leilão de Eletrónicos - Equipamentos de Rede');
+CALL sp_criar_leilao('2025-06-09', 'Setúbal','Leilão de Eletrónicos - Electrodomésticos e Impressoras');
+CALL sp_criar_leilao('2025-06-10', 'Viseu','Leilão de Eletrónicos - Dispositivos Usados');
+CALL sp_criar_leilao('2025-06-11', 'Guimarães','Leilão de Eletrónicos - Smartwatches');
+CALL sp_criar_leilao('2025-06-12', 'Viana do Castelo','Leilão de Eletrónicos - Drones e Acessórios para Telemóveis');
+CALL sp_criar_leilao('2025-06-13', 'Funchal','Leilão de Eletrónicos - Smartphones');
+CALL sp_criar_leilao('2025-06-14', 'Ponta Delgada','Leilão de Eletrónicos - Portáteis e Componentes de PC');
+CALL sp_criar_leilao('2025-06-15', 'Cascais','Leilão de Eletrónicos - Tablets e Dispositivos de Streaming');
+CALL sp_criar_leilao('2025-06-16', 'Sintra','Leilão de Eletrónicos - Televisões');
+CALL sp_criar_leilao('2025-06-17', 'Almada','Leilão de Eletrónicos - Consolas de Jogos e Auscultadores');
+CALL sp_criar_leilao('2025-06-18', 'Barreiro','Leilão de Eletrónicos - Projetores');
+CALL sp_criar_leilao('2025-06-19', 'Tomar','Leilão de Eletrónicos - Equipamento de Rede e Armazenamento Externo');
+CALL sp_criar_leilao('2025-06-20', 'Beja','Leilão de Eletrónicos - Electrodomésticos e Smartphones Usados');
 
+CALL sp_clonar_leilao(1);
 
 -- TABELA CATEGORIAS
 

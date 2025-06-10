@@ -4,11 +4,12 @@ DELIMITER $$
 
 CREATE PROCEDURE sp_criar_leilao(
     IN p_data_inicio DATE,
-    IN p_local VARCHAR(50)
+    IN p_local VARCHAR(50),
+    IN p_descricao VARCHAR(200)
 )
 BEGIN
-    INSERT INTO leiloes (data_inicio, local)
-    VALUES (p_data_inicio, p_local);
+    INSERT INTO leiloes (data_inicio, local, descricao)
+    VALUES (p_data_inicio, p_local, p_descricao);
 END $$
 DELIMITER ;
 
@@ -62,8 +63,7 @@ BEGIN
     INSERT INTO participantes_leilao (id_leilao, cc)
     VALUES (p_id_leilao, p_cc);
     COMMIT;
-    
-    SELECT 'Participante adicionado com sucesso.' AS mensagem;
+
 END $$
 
 DELIMITER ;
@@ -122,3 +122,111 @@ END $$
 DELIMITER ;
 
 
+-- SP4
+-- Remove o leilão
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_leilao(
+    IN p_id_leilao INT,
+    IN p_force BOOLEAN
+)
+BEGIN
+    DECLARE v_resultados INT;
+
+    -- Verifica se existem resultados associados ao leilão
+    SELECT COUNT(*) INTO v_resultados
+    FROM resultados
+    WHERE id_leilao = p_id_leilao;
+
+    -- Se existirem resultados e não for force, lançar erro
+    IF v_resultados > 0 AND p_force = FALSE THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Não é possível remover: existem resultados associados ao leilão.';
+    END IF;
+
+    -- Se existirem resultados e force for true, apagar resultados
+    IF v_resultados > 0 AND p_force = TRUE THEN
+        DELETE FROM resultados WHERE id_leilao = p_id_leilao;
+    END IF;
+
+    -- Apagar registos associados nas tabelas dependentes (em ordem de dependência)
+    DELETE FROM participantes_leilao WHERE id_leilao = p_id_leilao;
+
+    DELETE FROM sessao_categoria 
+    WHERE id_sessao IN (
+        SELECT id_sessao FROM sessoes WHERE id_leilao = p_id_leilao
+    );
+
+    DELETE FROM licitacoes 
+    WHERE id_artigo IN (
+        SELECT id_artigo FROM artigos 
+        WHERE id_lote IN (
+            SELECT id_lote FROM lotes 
+            WHERE id_sessao IN (
+                SELECT id_sessao FROM sessoes WHERE id_leilao = p_id_leilao
+            )
+        )
+    );
+
+    DELETE FROM compra 
+    WHERE id_artigo IN (
+        SELECT id_artigo FROM artigos 
+        WHERE id_lote IN (
+            SELECT id_lote FROM lotes 
+            WHERE id_sessao IN (
+                SELECT id_sessao FROM sessoes WHERE id_leilao = p_id_leilao
+            )
+        )
+    );
+
+    DELETE FROM artigos 
+    WHERE id_lote IN (
+        SELECT id_lote FROM lotes 
+        WHERE id_sessao IN (
+            SELECT id_sessao FROM sessoes WHERE id_leilao = p_id_leilao
+        )
+    );
+
+    DELETE FROM lotes 
+    WHERE id_sessao IN (
+        SELECT id_sessao FROM sessoes WHERE id_leilao = p_id_leilao
+    );
+
+    DELETE FROM sessoes 
+    WHERE id_leilao = p_id_leilao;
+
+    -- Finalmente, apagar o leilão
+    DELETE FROM leiloes WHERE id_leilao = p_id_leilao;
+END $$
+
+DELIMITER ;
+
+-- SP5
+-- Clona o leilão
+DELIMITER $$
+
+CREATE PROCEDURE sp_clonar_leilao (
+    IN p_id_leilao INT
+)
+BEGIN
+    DECLARE v_data_inicio DATE;
+    DECLARE v_data_fim DATE;
+    DECLARE v_local VARCHAR(50);
+
+    -- Obter os dados do leilão original (exceto a descrição)
+    SELECT data_inicio, data_fim, local
+    INTO v_data_inicio, v_data_fim, v_local
+    FROM leiloes
+    WHERE id_leilao = p_id_leilao;
+
+    -- Inserir novo leilão com descrição fixa
+    INSERT INTO leiloes (data_inicio, data_fim, descricao, local)
+    VALUES (
+        v_data_inicio,
+        v_data_fim,
+        'Leilao de Eletrónicos --- COPIA (a preencher)',
+        v_local
+    );
+END $$
+
+DELIMITER ;
