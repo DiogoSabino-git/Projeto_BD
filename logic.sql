@@ -1,7 +1,19 @@
 -- STORED PROCEDURES
 
+DELIMITER $$
+CREATE PROCEDURE sp_adicionar_pessoa(
+    IN p_cc VARCHAR(12),
+    IN p_nome VARCHAR(60),
+    IN p_email VARCHAR(50),
+    IN p_telefone CHAR(9)
+)
+BEGIN
+    -- Insere um novo registo na tabela 'pessoas'.
+    INSERT INTO pessoas(cc, nome, email, telefone)
+    VALUES (p_cc, p_nome, p_email, p_telefone);
+END $$
 
-
+DELIMITER ;
 
 
 DELIMITER $$

@@ -110,49 +110,49 @@ INSERT INTO sessao_categoria (id_sessao, nome_c) VALUES
 (20, 'Smartphones');
 
 -- TABELA PESSOAS
-INSERT INTO pessoas (cc, nome, email, telefone) VALUES
+-- INSERT INTO pessoas (cc, nome, email, telefone) VALUES
 -- compradores
-('123456789012', 'Ana Silva', 'ana.silva@example.com', '912345678'),
-('123456789013', 'Bruno Costa', 'bruno.costa@example.com', '913456789'),
-('123456789014', 'Carla Pereira', 'carla.pereira@example.com', '914567890'),
-('123456789015', 'Daniel Sousa', 'daniel.sousa@example.com', '915678901'),
-('123456789016', 'Elisa Martins', 'elisa.martins@example.com', '916789012'),
-('123456789017', 'Fábio Lopes', 'fabio.lopes@example.com', '917890123'),
-('123456789018', 'Gabriela Fernandes', 'gabriela.fernandes@example.com', '918901234'),
-('123456789019', 'Hugo Almeida', 'hugo.almeida@example.com', '919012345'),
-('123456789020', 'Inês Ribeiro', 'ines.ribeiro@example.com', '920123456'),
-('123456789021', 'João Gomes', 'joao.gomes@example.com', '921234567'),
-('123456789022', 'Karina Duarte', 'karina.duarte@example.com', '922345678'),
-('123456789023', 'Luís Moreira', 'luis.moreira@example.com', '923456789'),
-('123456789024', 'Marta Carvalho', 'marta.carvalho@example.com', '924567890'),
-('123456789025', 'Nuno Teixeira', 'nuno.teixeira@example.com', '925678901'),
-('123456789026', 'Olga Freitas', 'olga.freitas@example.com', '926789012'),
-('123456789027', 'Pedro Machado', 'pedro.machado@example.com', '927890123'),
-('123456789028', 'Quim Monteiro', 'quim.monteiro@example.com', '928901234'),
-('123456789029', 'Rita Lopes', 'rita.lopes@example.com', '929012345'),
-('123456789030', 'Sofia Nunes', 'sofia.nunes@example.com', '930123456'),
-('123456789031', 'Tiago Fernandes', 'tiago.fernandes@example.com', '931234567'),
+CALL sp_adicionar_pessoa('123456789012', 'Ana Silva', 'ana.silva@example.com', '912345678');
+CALL sp_adicionar_pessoa('123456789013', 'Bruno Costa', 'bruno.costa@example.com', '913456789');
+CALL sp_adicionar_pessoa('123456789014', 'Carla Pereira', 'carla.pereira@example.com', '914567890');
+CALL sp_adicionar_pessoa('123456789015', 'Daniel Sousa', 'daniel.sousa@example.com', '915678901');
+CALL sp_adicionar_pessoa('123456789016', 'Elisa Martins', 'elisa.martins@example.com', '916789012');
+CALL sp_adicionar_pessoa('123456789017', 'Fábio Lopes', 'fabio.lopes@example.com', '917890123');
+CALL sp_adicionar_pessoa('123456789018', 'Gabriela Fernandes', 'gabriela.fernandes@example.com', '918901234');
+CALL sp_adicionar_pessoa('123456789019', 'Hugo Almeida', 'hugo.almeida@example.com', '919012345');
+CALL sp_adicionar_pessoa('123456789020', 'Inês Ribeiro', 'ines.ribeiro@example.com', '920123456');
+CALL sp_adicionar_pessoa('123456789021', 'João Gomes', 'joao.gomes@example.com', '921234567');
+CALL sp_adicionar_pessoa('123456789022', 'Karina Duarte', 'karina.duarte@example.com', '922345678');
+CALL sp_adicionar_pessoa('123456789023', 'Luís Moreira', 'luis.moreira@example.com', '923456789');
+CALL sp_adicionar_pessoa('123456789024', 'Marta Carvalho', 'marta.carvalho@example.com', '924567890');
+CALL sp_adicionar_pessoa('123456789025', 'Nuno Teixeira', 'nuno.teixeira@example.com', '925678901');
+CALL sp_adicionar_pessoa('123456789026', 'Olga Freitas', 'olga.freitas@example.com', '926789012');
+CALL sp_adicionar_pessoa('123456789027', 'Pedro Machado', 'pedro.machado@example.com', '927890123');
+CALL sp_adicionar_pessoa('123456789028', 'Quim Monteiro', 'quim.monteiro@example.com', '928901234');
+CALL sp_adicionar_pessoa('123456789029', 'Rita Lopes', 'rita.lopes@example.com', '929012345');
+CALL sp_adicionar_pessoa('123456789030', 'Sofia Nunes', 'sofia.nunes@example.com', '930123456');
+CALL sp_adicionar_pessoa('123456789031', 'Tiago Fernandes', 'tiago.fernandes@example.com', '931234567');
 -- vendedores
-('123456789032', 'Miguel Silva', 'miguel.silva@example.com', '932345678'),
-('123456789033', 'Carolina Sousa', 'carolina.sousa@example.com', '933456789'),
-('123456789034', 'Rafael Costa', 'rafael.costa@example.com', '934567890'),
-('123456789035', 'Patrícia Fernandes', 'patricia.fernandes@example.com', '935678901'),
-('123456789036', 'João Rodrigues', 'joao.rodrigues@example.com', '936789012'),
-('123456789037', 'Sandra Marques', 'sandra.marques@example.com', '937890123'),
-('123456789038', 'Diogo Pereira', 'diogo.pereira@example.com', '938901234'),
-('123456789039', 'Mariana Lopes', 'mariana.lopes@example.com', '939012345'),
-('123456789040', 'André Almeida', 'andre.almeida@example.com', '940123456'),
-('123456789041', 'Mónica Teixeira', 'monica.teixeira@example.com', '941234567'),
-('123456789042', 'Pedro Machado', 'pedro.machado@example.com', '942345678'),
-('123456789043', 'Raquel Nunes', 'raquel.nunes@example.com', '943456789'),
-('123456789044', 'Filipe Monteiro', 'filipe.monteiro@example.com', '944567890'),
-('123456789045', 'Sílvia Carvalho', 'silvia.carvalho@example.com', '945678901'),
-('123456789046', 'Rui Fernandes', 'rui.fernandes@example.com', '946789012'),
-('123456789047', 'Isabel Santos', 'isabel.santos@example.com', '947890123'),
-('123456789048', 'Carlos Pinto', 'carlos.pinto@example.com', '948901234'),
-('123456789049', 'Teresa Lopes', 'teresa.lopes@example.com', '949012345'),
-('123456789050', 'Vítor Gomes', 'vitor.gomes@example.com', '950123456'),
-('123456789051', 'Helena Dias', 'helena.dias@example.com', '951234567');
+CALL sp_adicionar_pessoa('123456789032', 'Miguel Silva', 'miguel.silva@example.com', '932345678');
+CALL sp_adicionar_pessoa('123456789033', 'Carolina Sousa', 'carolina.sousa@example.com', '933456789');
+CALL sp_adicionar_pessoa('123456789034', 'Rafael Costa', 'rafael.costa@example.com', '934567890');
+CALL sp_adicionar_pessoa('123456789035', 'Patrícia Fernandes', 'patricia.fernandes@example.com', '935678901');
+CALL sp_adicionar_pessoa('123456789036', 'João Rodrigues', 'joao.rodrigues@example.com', '936789012');
+CALL sp_adicionar_pessoa('123456789037', 'Sandra Marques', 'sandra.marques@example.com', '937890123');
+CALL sp_adicionar_pessoa('123456789038', 'Diogo Pereira', 'diogo.pereira@example.com', '938901234');
+CALL sp_adicionar_pessoa('123456789039', 'Mariana Lopes', 'mariana.lopes@example.com', '939012345');
+CALL sp_adicionar_pessoa('123456789040', 'André Almeida', 'andre.almeida@example.com', '940123456');
+CALL sp_adicionar_pessoa('123456789041', 'Mónica Teixeira', 'monica.teixeira@example.com', '941234567');
+CALL sp_adicionar_pessoa('123456789042', 'Pedro Machado', 'pedro.machado@example.com', '942345678');
+CALL sp_adicionar_pessoa('123456789043', 'Raquel Nunes', 'raquel.nunes@example.com', '943456789');
+CALL sp_adicionar_pessoa('123456789044', 'Filipe Monteiro', 'filipe.monteiro@example.com', '944567890');
+CALL sp_adicionar_pessoa('123456789045', 'Sílvia Carvalho', 'silvia.carvalho@example.com', '945678901');
+CALL sp_adicionar_pessoa('123456789046', 'Rui Fernandes', 'rui.fernandes@example.com', '946789012');
+CALL sp_adicionar_pessoa('123456789047', 'Isabel Santos', 'isabel.santos@example.com', '947890123');
+CALL sp_adicionar_pessoa('123456789048', 'Carlos Pinto', 'carlos.pinto@example.com', '948901234');
+CALL sp_adicionar_pessoa('123456789049', 'Teresa Lopes', 'teresa.lopes@example.com', '949012345');
+CALL sp_adicionar_pessoa('123456789050', 'Vítor Gomes', 'vitor.gomes@example.com', '950123456');
+CALL sp_adicionar_pessoa('123456789051', 'Helena Dias', 'helena.dias@example.com', '951234567');
 
 -- TABELA PARA OS COMPRADORES
 

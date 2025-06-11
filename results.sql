@@ -4,12 +4,13 @@ DELIMITER $$
 
 CREATE PROCEDURE sp_criar_leilao(
     IN p_data_inicio DATE,
+    IN p_data_fim DATE,
     IN p_local VARCHAR(50),
     IN p_descricao VARCHAR(200)
 )
 BEGIN
-    INSERT INTO leiloes (data_inicio, local, descricao)
-    VALUES (p_data_inicio, p_local, p_descricao);
+    INSERT INTO leiloes (data_inicio, data_fim, local, descricao)
+    VALUES (p_data_inicio, p_data_fim, p_local, p_descricao);
 END $$
 DELIMITER ;
 
