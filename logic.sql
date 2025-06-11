@@ -1,12 +1,12 @@
 -- STORED PROCEDURES
 
 
--- METE OUTRA
+
 
 
 DELIMITER $$
 
-CREATE PROCEDURE adicionar_artigo(
+CREATE PROCEDURE sp_adicionar_artigo(
 	IN p_id_lote INT,
     IN p_preco_inicial NUMERIC(10,2),
     IN p_descricao VARCHAR(250)
@@ -20,7 +20,7 @@ DELIMITER ;
     
 DELIMITER $$
 
-CREATE PROCEDURE novo_lance(
+CREATE PROCEDURE sp_novo_lance(
     IN p_valor NUMERIC(10,2),
     IN p_cc VARCHAR(12),
     IN p_id_artigo INT
@@ -75,7 +75,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE fechar_compra(
+CREATE PROCEDURE sp_fechar_compra(
 	IN p_id_artigo INT
     )
 BEGIN
@@ -97,7 +97,7 @@ DELIMITER $$
 
 DELIMITER $$
 
-CREATE PROCEDURE listar_lances_artigos(
+CREATE PROCEDURE sp_listar_lances_artigos(
 	IN p_id_artigo INT
 )
 BEGIN
@@ -257,5 +257,300 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Erro: O novo lance deve ser maior que o maior lance anterior.';
     END IF;
 END $$
+
+DELIMITER ;
+
+
+
+-- REMOÇÃO DE DADOS
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_licitacao(
+    IN p_valor_l NUMERIC(10,2),
+    IN p_cc VARCHAR(12),
+    IN p_id_artigo INT
+)
+BEGIN
+    DELETE FROM licitacoes
+    WHERE valor_l = p_valor_l
+      AND cc = p_cc
+      AND id_artigo = p_id_artigo;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_compra(
+    IN p_id_artigo INT
+)
+BEGIN
+    DELETE FROM compra
+    WHERE id_artigo = p_id_artigo;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_metodo_pagamento(
+    IN p_n_cartao CHAR(16)
+)
+BEGIN
+    DELETE FROM metodosPagamento
+    WHERE n_cartao = p_n_cartao;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_resultado(
+    IN p_id_leilao INT,
+    IN p_id_participante INT
+)
+BEGIN
+    DELETE FROM resultados
+    WHERE id_leilao = p_id_leilao
+      AND id_participante = p_id_participante;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE sp_remover_artigo(
+    IN p_id_artigo INT
+)
+BEGIN
+    START TRANSACTION;
+
+    DELETE FROM licitacoes WHERE id_artigo = p_id_artigo;
+
+    DELETE FROM compra WHERE id_artigo = p_id_artigo;
+
+    UPDATE resultados
+    SET artigo_vencido = NULL
+    WHERE artigo_vencido = p_id_artigo;
+
+    DELETE FROM artigos
+    WHERE id_artigo = p_id_artigo;
+
+    -- Commit the transaction
+    COMMIT;
+
+END $$
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_remover_lote(
+    IN p_id_lote INT
+)
+BEGIN
+    -- Utilizar o SP de remoção de artigo para garantir a limpeza em 'licitacoes' e 'compra'
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE cur_id_artigo INT;
+    DECLARE cur_artigos CURSOR FOR SELECT id_artigo FROM artigos WHERE id_lote = p_id_lote;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur_artigos;
+    read_loop: LOOP
+        FETCH cur_artigos INTO cur_id_artigo;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        CALL sp_remover_artigo(cur_id_artigo);
+    END LOOP;
+    CLOSE cur_artigos;
+
+    -- Finalmente, remover o lote
+    DELETE FROM lotes
+    WHERE id_lote = p_id_lote;
+END //
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_sessao_categoria(
+    IN p_id_sessao INT,
+    IN p_nome_c VARCHAR(100)
+)
+BEGIN
+    DELETE FROM sessao_categoria
+    WHERE id_sessao = p_id_sessao
+      AND nome_c = p_nome_c;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_sessao(
+    IN p_id_sessao INT
+)
+BEGIN
+    -- Remover lotes associados a esta sessão
+    -- Usar o SP de remoção de lote para garantir a limpeza em 'artigos', 'licitacoes', 'compra'
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE cur_id_lote INT;
+    DECLARE cur_lotes CURSOR FOR SELECT id_lote FROM lotes WHERE id_sessao = p_id_sessao;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur_lotes;
+    read_loop: LOOP
+        FETCH cur_lotes INTO cur_id_lote;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        CALL sp_remover_lote(cur_id_lote);
+    END LOOP;
+    CLOSE cur_lotes;
+
+    -- Remover associações de sessão-categoria
+    DELETE FROM sessao_categoria WHERE id_sessao = p_id_sessao;
+
+    -- Finalmente, remover a sessão
+    DELETE FROM sessoes
+    WHERE id_sessao = p_id_sessao;
+END $$
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_remover_participante_leilao(
+    IN p_id_participante INT
+)
+BEGIN
+    -- Remover resultados associados a este participante
+    DELETE FROM resultados WHERE id_participante = p_id_participante;
+
+    -- Finalmente, remover o participante do leilão
+    DELETE FROM participantes_leilao
+    WHERE id_participante = p_id_participante;
+END //
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_comprador(
+    IN p_cc VARCHAR(12)
+)
+BEGIN
+    -- Remover métodos de pagamento associados
+    DELETE FROM metodosPagamento WHERE cc = p_cc;
+
+    -- Remover licitações feitas por este comprador
+    DELETE FROM licitacoes WHERE cc = p_cc;
+
+    -- Remover as compras associadas a este comprador
+    DELETE FROM compra WHERE cc = p_cc;
+
+    -- Remover o registo de comprador
+    DELETE FROM compradores
+    WHERE cc = p_cc;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_vendedor(
+    IN p_cc VARCHAR(12)
+)
+BEGIN
+    -- Remover lotes associados a este vendedor
+    -- Utilizar o SP de remoção de lote para garantir a limpeza em 'artigos', 'licitacoes', 'compra'
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE cur_id_lote INT;
+    DECLARE cur_lotes CURSOR FOR SELECT id_lote FROM lotes WHERE cc = p_cc;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur_lotes;
+    read_loop: LOOP
+        FETCH cur_lotes INTO cur_id_lote;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        CALL sp_remover_lote(cur_id_lote);
+    END LOOP;
+    CLOSE cur_lotes;
+
+    -- Remover o registo de vendedor
+    DELETE FROM vendedores
+    WHERE cc = p_cc;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_remover_categoria(
+    IN p_nome_c VARCHAR(100)
+)
+BEGIN
+    -- Remover associações de sessão-categoria
+    DELETE FROM sessao_categoria WHERE nome_c = p_nome_c;
+
+    -- Finalmente, remover a categoria
+    DELETE FROM categorias
+    WHERE nome_c = p_nome_c;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE sp_remover_pessoa(
+    IN p_cc VARCHAR(12)
+)
+BEGIN
+    -- Declaração de variáveis para o cursor (devem estar no topo do bloco BEGIN...END)
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE cur_id_participante INT;
+    -- Declaração do cursor (deve estar no topo)
+    DECLARE cur_participantes CURSOR FOR SELECT id_participante FROM participantes_leilao WHERE cc = p_cc;
+    -- Declaração do handler para o cursor (deve estar no topo)
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    -- Inicia uma transação para garantir que a operação é atómica
+    START TRANSACTION;
+
+    -- Remove de participantes_leilao primeiro, pois liga diretamente a 'pessoas'.
+    -- Abre o cursor e itera apenas se existirem participantes.
+    IF EXISTS (SELECT 1 FROM participantes_leilao WHERE cc = p_cc) THEN
+        OPEN cur_participantes;
+        read_loop: LOOP
+            FETCH cur_participantes INTO cur_id_participante;
+            IF done THEN
+                LEAVE read_loop;
+            END IF;
+            -- Chama o SP específico para lidar com dados relacionados ao participante (resultados)
+            CALL sp_remover_participante_leilao(cur_id_participante);
+        END LOOP;
+        CLOSE cur_participantes;
+    END IF;
+
+    -- Remove se a pessoa for um comprador (chama o SP específico)
+    IF EXISTS (SELECT 1 FROM compradores WHERE cc = p_cc) THEN
+        CALL sp_remover_comprador(p_cc);
+    END IF;
+
+    -- Remove se a pessoa for um vendedor (chama o SP específico)
+    IF EXISTS (SELECT 1 FROM vendedores WHERE cc = p_cc) THEN
+        CALL sp_remover_vendedor(p_cc);
+    END IF;
+
+    -- Finalmente, remove a pessoa da tabela base 'pessoas'
+    DELETE FROM pessoas
+    WHERE cc = p_cc;
+
+    -- Confirma a transação
+    COMMIT;
+
+END $$ 
 
 DELIMITER ;

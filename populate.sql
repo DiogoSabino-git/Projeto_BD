@@ -1,25 +1,25 @@
 -- TABELA LEILÕES
 
-CALL sp_criar_leilao('2025-06-01', 'Lisboa','Leilão de Eletrónicos - Smartphones');
-CALL sp_criar_leilao('2025-06-02', 'Porto','Leilão de Eletrónicos - Portáteis e Acessórios');
-CALL sp_criar_leilao('2025-06-03', 'Coimbra','Leilão de Eletrónicos - Tablets');
-CALL sp_criar_leilao('2025-06-04', 'Braga','Leilão de Eletrónicos - Televisões, Colunas e Projetores');
-CALL sp_criar_leilao('2025-06-05', 'Aveiro','Leilão de Eletrónicos - Consolas de Jogos');
-CALL sp_criar_leilao('2025-06-06', 'Faro','Leilão de Eletrónicos - Componentes de PC e Armazenamento Externo');
-CALL sp_criar_leilao('2025-06-07', 'Leiria','Leilão de Eletrónicos - Auscultadores');
-CALL sp_criar_leilao('2025-06-08', 'Évora','Leilão de Eletrónicos - Equipamentos de Rede');
-CALL sp_criar_leilao('2025-06-09', 'Setúbal','Leilão de Eletrónicos - Electrodomésticos e Impressoras');
-CALL sp_criar_leilao('2025-06-10', 'Viseu','Leilão de Eletrónicos - Dispositivos Usados');
-CALL sp_criar_leilao('2025-06-11', 'Guimarães','Leilão de Eletrónicos - Smartwatches');
-CALL sp_criar_leilao('2025-06-12', 'Viana do Castelo','Leilão de Eletrónicos - Drones e Acessórios para Telemóveis');
-CALL sp_criar_leilao('2025-06-13', 'Funchal','Leilão de Eletrónicos - Smartphones');
-CALL sp_criar_leilao('2025-06-14', 'Ponta Delgada','Leilão de Eletrónicos - Portáteis e Componentes de PC');
-CALL sp_criar_leilao('2025-06-15', 'Cascais','Leilão de Eletrónicos - Tablets e Dispositivos de Streaming');
-CALL sp_criar_leilao('2025-06-16', 'Sintra','Leilão de Eletrónicos - Televisões');
-CALL sp_criar_leilao('2025-06-17', 'Almada','Leilão de Eletrónicos - Consolas de Jogos e Auscultadores');
-CALL sp_criar_leilao('2025-06-18', 'Barreiro','Leilão de Eletrónicos - Projetores');
-CALL sp_criar_leilao('2025-06-19', 'Tomar','Leilão de Eletrónicos - Equipamento de Rede e Armazenamento Externo');
-CALL sp_criar_leilao('2025-06-20', 'Beja','Leilão de Eletrónicos - Electrodomésticos e Smartphones Usados');
+CALL sp_criar_leilao('2025-06-01', '2025-06-02', 'Lisboa','Leilão de Eletrónicos - Smartphones');
+CALL sp_criar_leilao('2025-06-02', '2025-06-03', 'Porto','Leilão de Eletrónicos - Portáteis e Acessórios');
+CALL sp_criar_leilao('2025-06-03', '2025-06-04', 'Coimbra','Leilão de Eletrónicos - Tablets');
+CALL sp_criar_leilao('2025-06-04', '2025-06-05', 'Braga','Leilão de Eletrónicos - Televisões, Colunas e Projetores');
+CALL sp_criar_leilao('2025-06-05', '2025-06-06', 'Aveiro','Leilão de Eletrónicos - Consolas de Jogos');
+CALL sp_criar_leilao('2025-06-06', '2025-06-07', 'Faro','Leilão de Eletrónicos - Componentes de PC e Armazenamento Externo');
+CALL sp_criar_leilao('2025-06-07', '2025-06-08', 'Leiria','Leilão de Eletrónicos - Auscultadores');
+CALL sp_criar_leilao('2025-06-08', '2025-06-09', 'Évora','Leilão de Eletrónicos - Equipamentos de Rede');
+CALL sp_criar_leilao('2025-06-09', '2025-06-10', 'Setúbal','Leilão de Eletrónicos - Electrodomésticos e Impressoras');
+CALL sp_criar_leilao('2025-06-10', '2025-06-11', 'Viseu','Leilão de Eletrónicos - Dispositivos Usados');
+CALL sp_criar_leilao('2025-06-11', '2025-06-12', 'Guimarães','Leilão de Eletrónicos - Smartwatches');
+CALL sp_criar_leilao('2025-06-12', '2025-06-13', 'Viana do Castelo','Leilão de Eletrónicos - Drones e Acessórios para Telemóveis');
+CALL sp_criar_leilao('2025-06-13', '2025-06-14', 'Funchal','Leilão de Eletrónicos - Smartphones');
+CALL sp_criar_leilao('2025-06-14', '2025-06-15', 'Ponta Delgada','Leilão de Eletrónicos - Portáteis e Componentes de PC');
+CALL sp_criar_leilao('2025-06-15', '2025-06-16', 'Cascais','Leilão de Eletrónicos - Tablets e Dispositivos de Streaming');
+CALL sp_criar_leilao('2025-06-16', '2025-06-17', 'Sintra','Leilão de Eletrónicos - Televisões');
+CALL sp_criar_leilao('2025-06-17', '2025-06-18', 'Almada','Leilão de Eletrónicos - Consolas de Jogos e Auscultadores');
+CALL sp_criar_leilao('2025-06-18', '2025-06-19', 'Barreiro','Leilão de Eletrónicos - Projetores');
+CALL sp_criar_leilao('2025-06-19', '2025-06-20', 'Tomar','Leilão de Eletrónicos - Equipamento de Rede e Armazenamento Externo');
+CALL sp_criar_leilao('2025-06-20', '2025-06-21', 'Beja','Leilão de Eletrónicos - Electrodomésticos e Smartphones Usados');
 
 CALL sp_clonar_leilao(1);
 
@@ -230,60 +230,60 @@ INSERT INTO lotes (id_lote, id_sessao, cc) VALUES
 
 -- TABELA ARTIGOS 
 
-CALL adicionar_artigo(1, 150.00, 'Smartphone Samsung Galaxy S21, novo');
-CALL adicionar_artigo(1, 140.00, 'Smartphone Samsung Galaxy S20, usado');
-CALL adicionar_artigo(2, 1200.50, 'Portátil Dell Inspiron 15, 16GB RAM');
-CALL adicionar_artigo(2, 1100.00, 'Portátil HP Pavilion, 8GB RAM');
-CALL adicionar_artigo(3, 300.00, 'Tablet Apple iPad Air, 64GB');
-CALL adicionar_artigo(4, 450.00, 'Televisor LG 43 polegadas 4K');
-CALL adicionar_artigo(4, 430.00, 'Televisor Samsung 40 polegadas Full HD');
-CALL adicionar_artigo(5, 350.00, 'Consola Sony PlayStation 5, usada');
-CALL adicionar_artigo(6, 250.00, 'Placa gráfica NVIDIA GTX 1660');
-CALL adicionar_artigo(6, 230.00, 'Placa gráfica AMD Radeon RX 580');
-CALL adicionar_artigo(7, 45.00, 'Teclado mecânico RGB, usado');
-CALL adicionar_artigo(8, 180.00, 'Smartwatch Fitbit Versa 3');
-CALL adicionar_artigo(9, 400.00, 'Câmara digital Canon EOS 2000D');
-CALL adicionar_artigo(10, 600.00, 'Drone DJI Mini 2');
-CALL adicionar_artigo(10, 580.00, 'Drone DJI Spark');
-CALL adicionar_artigo(11, 100.00, 'Colunas Bluetooth JBL Charge 4');
-CALL adicionar_artigo(12, 85.00, 'Auscultadores Sony WH-CH510');
-CALL adicionar_artigo(13, 90.00, 'Máquina de café portátil');
-CALL adicionar_artigo(14, 75.00, 'Router WiFi TP-Link AC1200');
-CALL adicionar_artigo(15, 60.00, 'Disco externo SSD 500GB');
-CALL adicionar_artigo(15, 55.00, 'Disco externo HDD 1TB');
-CALL adicionar_artigo(16, 50.00, 'Dispositivo de streaming Amazon Fire TV');
-CALL adicionar_artigo(17, 350.00, 'Projetor portátil Epson');
-CALL adicionar_artigo(18, 120.00, 'Impressora HP DeskJet');
-CALL adicionar_artigo(19, 20.00, 'Capa protetora para telemóvel');
-CALL adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
+CALL sp_adicionar_artigo(1, 150.00, 'Smartphone Samsung Galaxy S21, novo');
+CALL sp_adicionar_artigo(1, 140.00, 'Smartphone Samsung Galaxy S20, usado');
+CALL sp_adicionar_artigo(2, 1200.50, 'Portátil Dell Inspiron 15, 16GB RAM');
+CALL sp_adicionar_artigo(2, 1100.00, 'Portátil HP Pavilion, 8GB RAM');
+CALL sp_adicionar_artigo(3, 300.00, 'Tablet Apple iPad Air, 64GB');
+CALL sp_adicionar_artigo(4, 450.00, 'Televisor LG 43 polegadas 4K');
+CALL sp_adicionar_artigo(4, 430.00, 'Televisor Samsung 40 polegadas Full HD');
+CALL sp_adicionar_artigo(5, 350.00, 'Consola Sony PlayStation 5, usada');
+CALL sp_adicionar_artigo(6, 250.00, 'Placa gráfica NVIDIA GTX 1660');
+CALL sp_adicionar_artigo(6, 230.00, 'Placa gráfica AMD Radeon RX 580');
+CALL sp_adicionar_artigo(7, 45.00, 'Teclado mecânico RGB, usado');
+CALL sp_adicionar_artigo(8, 180.00, 'Smartwatch Fitbit Versa 3');
+CALL sp_adicionar_artigo(9, 400.00, 'Câmara digital Canon EOS 2000D');
+CALL sp_adicionar_artigo(10, 600.00, 'Drone DJI Mini 2');
+CALL sp_adicionar_artigo(10, 580.00, 'Drone DJI Spark');
+CALL sp_adicionar_artigo(11, 100.00, 'Colunas Bluetooth JBL Charge 4');
+CALL sp_adicionar_artigo(12, 85.00, 'Auscultadores Sony WH-CH510');
+CALL sp_adicionar_artigo(13, 90.00, 'Máquina de café portátil');
+CALL sp_adicionar_artigo(14, 75.00, 'Router WiFi TP-Link AC1200');
+CALL sp_adicionar_artigo(15, 60.00, 'Disco externo SSD 500GB');
+CALL sp_adicionar_artigo(15, 55.00, 'Disco externo HDD 1TB');
+CALL sp_adicionar_artigo(16, 50.00, 'Dispositivo de streaming Amazon Fire TV');
+CALL sp_adicionar_artigo(17, 350.00, 'Projetor portátil Epson');
+CALL sp_adicionar_artigo(18, 120.00, 'Impressora HP DeskJet');
+CALL sp_adicionar_artigo(19, 20.00, 'Capa protetora para telemóvel');
+CALL sp_adicionar_artigo(20, 100.00, 'Smartphone usado, em bom estado');
 
 
 -- TABELA LICITACOES
 
-CALL novo_lance(170.00, '123456789013', 1);  
-CALL novo_lance(180.00, '123456789012', 1);
-CALL novo_lance(145.00, '123456789014', 2);  
-CALL novo_lance(1250.00, '123456789015', 3);  
-CALL novo_lance(1150.00, '123456789016', 4);  
-CALL novo_lance(310.00, '123456789017', 5);   
-CALL novo_lance(460.00, '123456789018', 6);   
-CALL novo_lance(440.00, '123456789019', 7);   
-CALL novo_lance(360.00, '123456789020', 8);  
-CALL novo_lance(260.00, '123456789021', 9);   
-CALL novo_lance(240.00, '123456789022', 10);  
-CALL novo_lance(50.00, '123456789023', 11);   
-CALL novo_lance(200.00, '123456789024', 12);  
-CALL novo_lance(420.00, '123456789025', 13);  
-CALL novo_lance(650.00, '123456789026', 14);  
-CALL novo_lance(590.00, '123456789027', 15);  
-CALL novo_lance(110.00, '123456789028', 16);  
-CALL novo_lance(90.00, '123456789029', 17);   
-CALL novo_lance(100.00, '123456789030', 18);  
-CALL novo_lance(80.00, '123456789031', 19);   
-CALL novo_lance(70.00, '123456789012', 20);   
-CALL novo_lance(105.00, '123456789013', 21); 
-CALL novo_lance(95.00, '123456789014', 22);      
-CALL novo_lance(110.00, '123456789017', 25);  
+CALL sp_novo_lance(170.00, '123456789013', 1);  
+CALL sp_novo_lance(180.00, '123456789012', 1);
+CALL sp_novo_lance(145.00, '123456789014', 2);  
+CALL sp_novo_lance(1250.00, '123456789015', 3);  
+CALL sp_novo_lance(1150.00, '123456789016', 4);  
+CALL sp_novo_lance(310.00, '123456789017', 5);   
+CALL sp_novo_lance(460.00, '123456789018', 6);   
+CALL sp_novo_lance(440.00, '123456789019', 7);   
+CALL sp_novo_lance(360.00, '123456789020', 8);  
+CALL sp_novo_lance(260.00, '123456789021', 9);   
+CALL sp_novo_lance(240.00, '123456789022', 10);  
+CALL sp_novo_lance(50.00, '123456789023', 11);   
+CALL sp_novo_lance(200.00, '123456789024', 12);  
+CALL sp_novo_lance(420.00, '123456789025', 13);  
+CALL sp_novo_lance(650.00, '123456789026', 14);  
+CALL sp_novo_lance(590.00, '123456789027', 15);  
+CALL sp_novo_lance(110.00, '123456789028', 16);  
+CALL sp_novo_lance(90.00, '123456789029', 17);   
+CALL sp_novo_lance(100.00, '123456789030', 18);  
+CALL sp_novo_lance(80.00, '123456789031', 19);   
+CALL sp_novo_lance(70.00, '123456789012', 20);   
+CALL sp_novo_lance(105.00, '123456789013', 21); 
+CALL sp_novo_lance(95.00, '123456789014', 22);      
+CALL sp_novo_lance(110.00, '123456789017', 25);  
 
 -- TABELA METODOSPAGAMENTO
 
@@ -312,32 +312,32 @@ INSERT INTO metodosPagamento (n_cartao, data_val, cc) VALUES
 
 -- TABELA COMPRA
 
-CALL fechar_compra(1);
-CALL fechar_compra(2);
-CALL fechar_compra(3);
-CALL fechar_compra(4);
-CALL fechar_compra(5);
-CALL fechar_compra(6);
-CALL fechar_compra(7);
-CALL fechar_compra(8);
-CALL fechar_compra(9);
-CALL fechar_compra(10);
-CALL fechar_compra(11);
-CALL fechar_compra(12);
-CALL fechar_compra(13);
-CALL fechar_compra(14);
-CALL fechar_compra(15);
-CALL fechar_compra(16);
-CALL fechar_compra(17);
-CALL fechar_compra(18);
-CALL fechar_compra(19);
-CALL fechar_compra(20);
+CALL sp_fechar_compra(1);
+CALL sp_fechar_compra(2);
+CALL sp_fechar_compra(3);
+CALL sp_fechar_compra(4);
+CALL sp_fechar_compra(5);
+CALL sp_fechar_compra(6);
+CALL sp_fechar_compra(7);
+CALL sp_fechar_compra(8);
+CALL sp_fechar_compra(9);
+CALL sp_fechar_compra(10);
+CALL sp_fechar_compra(11);
+CALL sp_fechar_compra(12);
+CALL sp_fechar_compra(13);
+CALL sp_fechar_compra(14);
+CALL sp_fechar_compra(15);
+CALL sp_fechar_compra(16);
+CALL sp_fechar_compra(17);
+CALL sp_fechar_compra(18);
+CALL sp_fechar_compra(19);
+CALL sp_fechar_compra(20);
 
 
 -- TABELA RESULTADOS
 
-CALL sp_adicionar_participante(1,123456789023);
-CALL sp_registar_resultado(1,25);
+CALL sp_adicionar_participante(17,123456789023);
+CALL sp_registar_resultado(17,25);
 
 CALL sp_registar_resultado(1,1);
 CALL sp_registar_resultado(1,2);
