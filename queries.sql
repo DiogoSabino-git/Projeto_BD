@@ -238,7 +238,7 @@ ORDER BY
     L.id_leilao,
     Lic.valor_l;
     
--- Q9
+-- Q9 Top 5 dos leilões com maior número de participantes, agrupada por ano e tendo como base os últimos três anos bem como restrições relacionadas com faixa etária
 WITH LeilaoParticipants AS (
     SELECT DISTINCT
         L.id_leilao,
