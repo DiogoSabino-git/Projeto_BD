@@ -101,3 +101,15 @@ CREATE TABLE resultados(
     FOREIGN KEY(id_leilao) REFERENCES leiloes(id_leilao),
     FOREIGN KEY(id_participante) REFERENCES participantes_leilao(id_participante),
     FOREIGN KEY (artigo_vencido) REFERENCES artigos(id_artigo));
+    
+CREATE TABLE tbl_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    log_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    log_type VARCHAR(50) NOT NULL, 
+    id_leilao INT,
+    participante_cc VARCHAR(12), 
+    valor DECIMAL(10, 2),        
+    description TEXT,            
+    INDEX (id_leilao),           
+    INDEX (participante_cc)
+);
